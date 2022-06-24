@@ -1,6 +1,8 @@
 ---
 title: CSharp 引用类型踩坑
 date: 2022/6/24
+index_img: /img/illustration/dragon.jpg
+banner_img: /img/illustration/dragon.jpg
 categories:
 - 程序语言
 - CSharp
@@ -113,7 +115,7 @@ void main()
 
 运行后的结果是：
 
-```
+```con
 a赋值前：00AB8FC8
 t赋值前：00AB8FC8
 t赋值后：00AB8D60
