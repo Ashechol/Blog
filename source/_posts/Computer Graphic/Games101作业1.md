@@ -2,6 +2,7 @@
 title: Games101 作业1
 date: 2023/1/5
 math: true
+index_img: img/index_img/games101_hw1.png
 categories:
 - 图形学
 - Games101
@@ -157,7 +158,8 @@ Eigen::Matrix4f get_rotation(Vector3f axis, float angle)
 {
     float c = cos(angle);
     float s = sin(angle);
-
+	
+    // 单位化轴向量
     axis.normalize();
 
     Eigen::Matrix3f n;
@@ -176,6 +178,44 @@ Eigen::Matrix4f get_rotation(Vector3f axis, float angle)
 ```
 
 这里没有使用弧度转换是因为该函数是被 `get_model_matrix` 调用，而 `get_model_matrix` 已经转换过弧度了。
+
+## 4. Bug：数组越界（Segmentfault 0xc0000005）
+
+当绕某些轴旋转时（如 X 轴），会遇到数组越界的问题，导致程序崩溃。Debug 后发现问题出在 Rasterizer.cpp，`set_pixel` 函数中的判断语句。
+
+```cpp
+void rst::rasterizer::set_pixel(const Eigen::Vector3f& point, const Eigen::Vector3f& color)
+{
+    //old index: auto ind = point.y() + point.x() * width;
+    if (point.x() < 0 || point.x() >= width ||
+        point.y() < 0 || point.y() >= height) return;
+    auto ind = (height-point.y())*width + point.x();
+    frame_buf[ind] = color;
+}
+```
+
+该函数的功能是判断像素点在不在投影范围内，如果在其中，就将改像素信息写入 `frame_buf` 中，否则跳过该像素。
+
+frame_buf 是将二维像素信息用一维数组保存，大小为 700 x 700 即 490000。像素点坐标到数组序号的转换公式是
+
+```cpp
+auto ind = (height-point.y())*width + point.x();
+```
+
+如果按照判断条件，当出现如点 $(664, 0)$ 时，改点的判断为 `false`  从而按照公式计算出序号 `ind` = 490664，从而导致数组越界。
+
+因此判断条件包含 y 为 0 的情况。改为，
+
+```cpp
+if (point.x() < 0 || point.x() >= width ||
+    point.y() <= 0 || point.y() >= height) return;
+```
+
+## 5. 最终效果
+
+绕向量 $(3, 3, 0)^\mathbf T$旋转：
+
+<img src="https://img.ashechol.top/picgo/games101_hw1.gif" style="zoom:67%;" />
 
 ## 相关链接
 
