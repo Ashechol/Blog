@@ -69,8 +69,8 @@ float width = height * aspect_ratio;
 $$
 \mathbf M_{ortho}=
 \begin{bmatrix}
-\frac{2}{h}&0&0&0\\
-0&\frac{2}{w}&0&0\\
+\frac{2}{w}&0&0&0\\
+0&\frac{2}{h}&0&0\\
 0&0&\frac{2}{n-f}&\frac{n+f}{f-n}\\
 0&0&0&1
 \end{bmatrix}
@@ -109,10 +109,10 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
 
     // Orthographic projection
     Eigen::Matrix4f ortho;
-    ortho << 2 / height, 0, 0,0,
-            0, 2 / width, 0, 0,
-            0, 0, 2 / (zNear - zFar), (zNear + zFar) / (zFar-zNear),
-            0, 0, 0, 1;
+    ortho << 2 / width, 0, 0,0,
+             0, 2 / height, 0, 0,
+             0, 0, 2 / (zNear - zFar), (zNear + zFar) / (zFar-zNear),
+             0, 0, 0, 1;
 
     projection = ortho * frustum;
 
