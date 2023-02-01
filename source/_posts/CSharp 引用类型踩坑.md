@@ -4,11 +4,12 @@ date: 2022/6/24
 index_img: /img/illustration/dragon.jpg
 banner_img: /img/illustration/dragon.jpg
 categories:
-- 程序语言
-- CSharp
+  - 程序语言
+  - CSharp
 tags:
-- CSharp
-- 引用类型
+  - CSharp
+  - 引用类型
+abbrlink: 5a52e689
 ---
 
 ## 一、C# 的数据类型

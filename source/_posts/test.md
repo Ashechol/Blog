@@ -3,6 +3,7 @@ title: test
 date: 2021/1/1
 math: true
 mermaid: true
+abbrlink: d87f7e0c
 ---
 
 

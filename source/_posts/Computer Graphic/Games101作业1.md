@@ -4,11 +4,12 @@ date: 2023/1/5
 math: true
 index_img: img/index_img/games101_hw1.png
 categories:
-- 图形学
-- Games101
+  - 图形学
+  - Games101
 tags:
-- 图形学
-- C++
+  - 图形学
+  - C++
+abbrlink: 82c3b933
 ---
 
 # 作业 1

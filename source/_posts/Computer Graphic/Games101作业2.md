@@ -4,13 +4,14 @@ date: 2023/1/13
 math: true
 index_img: img/index_img/games101_hw2.png
 categories:
-- 图形学
-- Games101
+  - 图形学
+  - Games101
 tags:
-- 图形学
-- 光栅化
-- 抗锯齿
-- C++
+  - 图形学
+  - 光栅化
+  - 抗锯齿
+  - C++
+abbrlink: 26626c91
 ---
 
 # 作业 2
