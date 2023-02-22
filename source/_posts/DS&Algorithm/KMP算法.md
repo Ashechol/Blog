@@ -5,6 +5,8 @@ tags:
   - KMP
 categories:
   - 数据结构和算法
+abbrlink: 2da0528d
+date: '2023-02-16 16:04:51'
 ---
 
 
