@@ -25,7 +25,7 @@ KMP算法的目标是，避免重复匹配从而减小时间复杂度。如：
 
 而**KMP**算法可以找出之前已经匹配过的子串`aa` 从而字符串可以继续往后遍历不用回退，只用回退模式串的到第三个字符`b`。
 
-<img src="https://img.ashechol.top/algorithm/KMP_1.jpg" style="zoom:50%;" />
+<img src="https://img.ashechol.top/algorithm/KMP_1.jpg" style="zoom: 33%;" />
 
 ### 前缀表
 
