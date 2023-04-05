@@ -1,6 +1,7 @@
 ---
 title: C# 运行时与垃圾回收
 categories:
+  - 程序语言
   - CSharp
 tags:
   - CSharp
