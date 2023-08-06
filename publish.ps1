@@ -1,8 +1,8 @@
-message = Read-Host "Message: "
+$message = Read-Host "Message"
 
-if (message == "") {
+if ($message = = "") {
     Write-Host "Empty Message! "
     return
 }
 
-git add . && git commit -m "%message%" && git push
+git add . && git commit -m "$message" && git push
