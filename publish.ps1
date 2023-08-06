@@ -2,7 +2,9 @@ $message = Read-Host "Message"
 
 if ($message -eq "") {
     Write-Host "Empty Message! "
-    return
+}
+else {
+    git add . && git commit -m "$message" && git push
 }
 
-git add . && git commit -m "$message" && git push
+timeout /t 5
