@@ -1,6 +1,6 @@
 $message = Read-Host "Message"
 
-if ($message = = "") {
+if ($message -eq "") {
     Write-Host "Empty Message! "
     return
 }
