@@ -6,7 +6,7 @@ tags:
 categories:
   - 数据结构和算法
 abbrlink: 2da0528d
-date: '2023-02-16 16:04:51'
+data: 2023-10-19
 ---
 
 
@@ -31,25 +31,67 @@ KMP算法的目标是，避免重复匹配从而减小时间复杂度。如：
 
 **KMP**匹配的方法是基于一个叫做**前缀表**的数组（有时候也被称为`prev数组`或`next数组`）。通过前缀表，可以快速得到模式串当前字符退回的位置。
 
-例如`aabaaf`的前缀表为：`[0, 1, 0, 1, 2, 0]`。为了方便代码的实现，一般会往左移（即全部减一）
+例如`aabaaf`的前缀表为：`[0, 1, 0, 1, 2, 0]`。为了方便代码的实现，一般会往左移 `[-1, 0, 1, 0, 1, 2]`。
 
-`[-1, 0, -1, 0, 1, -1]`。
-$$
-\begin{aligned}
--1\;0\;1\;2\;3\;4\;5 \\
-a\;a\;b\;a\;a\;f 
-\end{aligned} 
-$$
-
-使用两个指针`pre`和`suf`：
+使用两个指针 `pre` 和 `suf` ：
 
 *   `pre = -1`
 
 *   `suf = 0`
 
-`str[pre]`是前缀的最后一个字符，`str[suf]`是后缀的最后一个字符
+`str[pre]` 是前缀的最后一个字符，`str[suf]` 是后缀的最后一个字符
 
-如果`str[pre]==str[suf]`则两者继续向后比较，`next[suf]`记录当前`pre`的位置。
+如果 `str[pre]==str[suf]` 则两者继续向后比较，`next[suf]` 记录当前 `pre` 的位置。
 
-如果两者不相等。则pre需要按照next
+
+
+```cpp
+vector<int> getNext(string& pattern)
+{
+    vector<int> next(1, 0);
+
+    int i = 1, prefixLen = 0;
+    while (i < pattern.length())
+    {
+        if (pattern[prefixLen] == pattern[i])
+        {
+            next.emplace_back(++prefixLen);
+            ++i;
+        }
+        else if (prefixLen == 0)
+        {
+            next.emplace_back(0);
+            ++i;
+        }
+        else
+            prefixLen = next[prefixLen - 1];
+    }
+
+    return next;
+}
+int patternMatch(string& str, string& pattern)
+{
+    auto next = getNext(pattern);
+
+    for (int i = 0, j = 0; i < str.length();)
+    {
+        if (str[i] == pattern[j])
+        {
+            ++i;
+            ++j;
+        }
+        else if (j > 0)
+            j = next[j-1];
+        else
+            ++i;
+
+        if (j == pattern.length())
+            return i - j;
+    }
+
+    return -1;
+}
+```
+
+
 
