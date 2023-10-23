@@ -44,3 +44,26 @@ $$
 ## 2. 基于栅格的 SDF 计算方法
 
 一张地图可以有无数多的点，我们不可能将每个点的 SDF 数据都记录下来。因此根据障碍精度对地图进行栅格化，仅计算出栅格中的每个点的 SDF 数据。对于任意一个点的 SDF，通过找到它 **最近的四个点** 的 SDF 值，然后进行 [**双线性插值**](https://blog.ashechol.top/posts/d247a4eb.html#双线性插值bilinear-interpolation) 求出。
+
+在计算 SDF 前，需要赋予栅格初始值。阻挡区域为 0，可通过区域为 1。
+
+<img src="https://img.ashechol.top/picgo/raster_map.png" alt="灰色表示0，白色表示1" style="zoom:60%;" />
+
+### 2.1 栅格 SDF 计算
+
+计算 SDF 可以利用欧式距离转换（Euclidean Distance Transform，EDT）求出每个栅格点到最近阻挡区的距离平方，然后开根。
+
+$$
+d(x,y)=\sqrt{\bf{EDT}(x,y)}
+$$
+
+> EDT 的计算方式有很多种，比如基于光栅扫描的 8ssedt 算法（适合 CPU 计算）和独立扫描 Saito Toiwaki 算法（利用 GPU 多线程计算效果好于 8ssedt）
+
+最后计算出的 SDF 如下：
+
+<img src="https://img.ashechol.top/picgo/sdf.png" style="zoom:60%;" />
+
+当我们要获取 SDF 上任意点的值，只需找到它最近的四个离散点，然后进行双线性插值。
+
+
+
