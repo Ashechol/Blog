@@ -30,7 +30,7 @@ tab_title_separator: " - "
 
 # 强制所有链接升级为 HTTPS（适用于图片等资源出现 HTTP 混入报错）
 # Force all links to be HTTPS (applicable to HTTP mixed error)
-force_https: false
+force_https: true
 
 # 代码块的增强配置
 # Enhancements to code blocks
@@ -1090,3 +1090,6 @@ static_prefix:
   twikoo: https://lib.baomitu.com/twikoo/1.5.11/
 
   hint: https://lib.baomitu.com/hint.css/2.7.0/
+
+# 自定义 <head> 节点中的 HTML 内容
+custom_head: '<meta name="google-site-verification" content="rf2xKV7uaCZUkGuG3JBCUHKXN0t5Kr1smNRtHrOeuQ8" />'
