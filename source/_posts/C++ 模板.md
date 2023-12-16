@@ -50,7 +50,6 @@ public:
 ```
 
 ## 特化
-
 ```cpp
 // 基础模板
 template<typename T1, typename T2, typename T3>
