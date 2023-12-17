@@ -53,16 +53,51 @@ public:
 ```cpp
 // 基础模板
 template<typename T1, typename T2, typename T3>
-void Func(T1 a, T2, b, T3 c);
+class Test
+{
+
+};
 
 // 偏特化
 template<typename T2>
-void Func(int a, T2 b, float c);
+class Test<int, T2, float>
+{
+
+};
 
 // 全特化
 template<>
-void Func(int a, bool b, float c);
+class Test<int, bool, float>
+{
+    
+};
 ```
+
+需要注意的是，偏特化的概念不适用于模板函数。但是模板函数可以通过函数重载的方式来实现偏特化全特化的效果。
+
+```cpp
+// 基础模板函数
+template<typename T1, typename T2, typename T3>
+void Func(T1 a, T2, b, T3 c);
+
+// 重载了 T1，T3 的函数
+template<typename T2>
+void Func(int a, T2 b, float c);
+
+// 重载了全部模板参数的函数
+void Func(int a, bool b, float c);
+
+// 模板函数不支持偏特化
+// // IDE 报错： Function template partial specialization is not allowed
+// template<typename T1>
+// void Func<T1, int, bool>(T1 a, int b, bool c);
+
+// 模板函数全特化没有问题
+template<>
+void Func<float, int, bool>(float a, int b, bool c);
+```
+
+
 
 ## 可变模板参数
 
