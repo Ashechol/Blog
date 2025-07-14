@@ -9,9 +9,6 @@ tags:
 date: 2023/9/25
 abbrlink: 1086dad3
 ---
-
-
-
 # C# 枚举器和迭代器
 
 在 C# 的使用中，当我们想要遍历一个集合（Collections），如 Array、List、Stack、Dictionary 等的时候，最直接的方法便是使用 `foreach` 来遍历整个集合。
